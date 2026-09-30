@@ -2,7 +2,7 @@
 
 **[Ver o estudo de caso](https://vitoriamir.github.io/loja-woocommerce/)** · **[Abrir a demo ao vivo](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2FVitoriaMir%2Floja-woocommerce%2Fmain%2Fblueprint-demo.json)**
 
-A demo roda a loja inteira no seu navegador pelo WordPress Playground, sem servidor. Ela leva cerca de 1 minuto para abrir, e você entra como administrador. Loja, produtos e empresa são fictícios.
+A demo roda a loja inteira no seu navegador pelo WordPress Playground, sem servidor. Ela leva cerca de 1 minuto para abrir, e você entra como administrador. Na demo o pagamento é o "Pix manual", porque o Mercado Pago precisa das credenciais de uma conta real (e o plugin dele não roda no Playground do navegador). Loja, produtos e empresa são fictícios.
 
 ![Página inicial da loja](docs/img/inicio-pc.jpg)
 
