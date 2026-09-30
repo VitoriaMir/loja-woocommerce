@@ -1,0 +1,12 @@
+/*
+Theme Name:   Fermento Vivo
+Theme URI:    https://github.com/VitoriaMir
+Description:  Tema filho do Storefront para a loja Fermento Vivo. As personalizações visuais ficam em assets/css/loja.css e as de comportamento em functions.php.
+Author:       Fermento Vivo
+Template:     storefront
+Version:      1.0.0
+Requires PHP: 8.1
+Text Domain:  fermento-vivo
+*/
+
+/* Os estilos ficam em assets/css/loja.css (carregado depois do Storefront). */

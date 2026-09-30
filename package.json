@@ -1,0 +1,14 @@
+{
+	"name": "loja-fermento-vivo",
+	"private": true,
+	"description": "Loja WooCommerce Fermento Vivo: ambiente local, testes e scripts de publicação.",
+	"scripts": {
+		"loja": "wp-playground-cli server --blueprint=blueprint.json --mount-dir ./wp-content/themes/fermento-vivo /wordpress/wp-content/themes/fermento-vivo --mount-dir ./wp-content/mu-plugins /wordpress/wp-content/mu-plugins --mount-dir ./setup /wordpress/setup --port=9400",
+		"teste": "playwright test",
+		"teste:ver": "playwright test --headed"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.63.0",
+		"@wp-playground/cli": "^3.1.56"
+	}
+}

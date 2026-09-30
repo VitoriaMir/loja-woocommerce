@@ -1,0 +1,28 @@
+/* Os campos PF/PJ são obrigatórios por regra própria; esconde o "(opcional)" do WooCommerce. */
+.fv-pf .optional,
+.fv-pj .optional { display: none; }
+
+.fv-pj { display: none; }
+
+.fv-cep-msg {
+	display: block;
+	margin-top: .35em;
+	font-size: .875em;
+	color: #a4461b;
+}
+
+.fv-buscando input {
+	background-image: linear-gradient(90deg, transparent, rgba(31, 79, 196, .12), transparent);
+	background-size: 200% 100%;
+	animation: fv-busca 1s linear infinite;
+}
+
+@keyframes fv-busca { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+	.fv-buscando input { animation: none; }
+}
+
+/* A loja só vende para o Brasil: o campo País fica escondido (o valor BR continua sendo enviado). */
+#billing_country_field,
+#shipping_country_field { display: none !important; }

@@ -1,0 +1,14 @@
+# Bloqueia por 1 hora o IP que errar a senha 6 vezes em 10 minutos.
+[wordpress-login]
+enabled  = true
+port     = http,https
+filter   = wordpress-login
+logpath  = {{LOG}}
+maxretry = 6
+findtime = 600
+bantime  = 3600
+
+[sshd]
+enabled  = true
+maxretry = 5
+bantime  = 3600

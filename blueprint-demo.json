@@ -1,0 +1,255 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Loja Fermento Vivo · demo",
+		"author": "VitoriaMir",
+		"description": "Loja WooCommerce com checkout brasileiro, Mercado Pago, Melhor Envio e produtos de exemplo, rodando no navegador."
+	},
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "woocommerce"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "woocommerce-mercadopago"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "melhor-envio-cotacao"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "wordpress.org/themes",
+				"slug": "storefront"
+			},
+			"options": {
+				"activate": false
+			}
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/setup"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/setup/conteudo"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/mu-plugins"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/assets"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/themes/fermento-vivo"
+		},
+		{
+			"step": "mkdir",
+			"path": "/wordpress/wp-content/themes/fermento-vivo/assets/css"
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/themes/fermento-vivo/assets/css/loja.css",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/themes/fermento-vivo/assets/css/loja.css"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/themes/fermento-vivo/functions.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/themes/fermento-vivo/functions.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/themes/fermento-vivo/style.css",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/themes/fermento-vivo/style.css"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/ambiente-local.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/ambiente-local.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/assets/checkout-brasil.css",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/assets/checkout-brasil.css"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/assets/checkout-brasil.js",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/assets/checkout-brasil.js"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/checkout-brasil.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/checkout-brasil.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/contato.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/contato.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/dados-loja.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/dados-loja.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/desempenho.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/desempenho.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/frete.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/frete.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/parcelas.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/parcelas.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/seguranca.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/seguranca.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja/seo.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja/seo.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/wp-content/mu-plugins/fv-loja.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/wp-content/mu-plugins/fv-loja.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/setup/configurar-loja.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/setup/configurar-loja.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/setup/conteudo/paginas.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/setup/conteudo/paginas.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/setup/conteudo/produtos.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/setup/conteudo/produtos.php"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wordpress/setup/imagens.php",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/VitoriaMir/loja-woocommerce/main/setup/imagens.php"
+			}
+		},
+		{
+			"step": "activateTheme",
+			"themeFolderName": "fermento-vivo"
+		},
+		{
+			"step": "setSiteLanguage",
+			"language": "pt_BR"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp eval-file /wordpress/setup/configurar-loja.php local"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp rewrite flush"
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Loja Fermento Vivo",
+		"author": "VitoriaMir",
+		"description": "WordPress + WooCommerce com tema Fermento Vivo, Mercado Pago, Melhor Envio e produtos de exemplo."
+	},
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.3", "wp": "latest" },
+	"login": true,
+	"steps": [
+		{ "step": "setSiteLanguage", "language": "pt_BR" },
+		{ "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" }, "options": { "activate": true } },
+		{ "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce-mercadopago" }, "options": { "activate": true } },
+		{ "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "melhor-envio-cotacao" }, "options": { "activate": true } },
+		{ "step": "installTheme", "themeData": { "resource": "wordpress.org/themes", "slug": "storefront" }, "options": { "activate": false } },
+		{ "step": "activateTheme", "themeFolderName": "fermento-vivo" },
+		{ "step": "wp-cli", "command": "wp language plugin install woocommerce woocommerce-mercadopago melhor-envio-cotacao pt_BR" },
+		{ "step": "wp-cli", "command": "wp language theme install storefront pt_BR" },
+		{ "step": "wp-cli", "command": "wp eval-file /wordpress/setup/configurar-loja.php local" },
+		{ "step": "wp-cli", "command": "wp rewrite flush" }
+	]
+}

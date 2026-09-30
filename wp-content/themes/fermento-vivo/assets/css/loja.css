@@ -1,0 +1,310 @@
+/* Fermento Vivo · estilos da loja sobre o Storefront.
+   Paleta: azul-cobalto (panela esmaltada) + centeio (casca do pão) sobre fundo farinha. */
+:root {
+	--fv-bg: #F7F7F4;
+	--fv-surface: #FFFFFF;
+	--fv-ink: #1F2421;
+	--fv-muted: #5E655F;
+	--fv-line: #DEDFD8;
+	--fv-cobalt: #1F4FC4;
+	--fv-cobalt-dark: #173C98;
+	--fv-cobalt-soft: #E6ECFB;
+	--fv-rye: #C98A1B;
+	--fv-rye-soft: #FBF1DE;
+	--fv-ok: #227A4B;
+	--fv-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+	--fv-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+	--fv-raio: 10px;
+}
+
+/* Base ------------------------------------------------------------- */
+body {
+	background: var(--fv-bg);
+	color: var(--fv-ink);
+	font-family: var(--fv-body);
+	-webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, .site-title, .alpha, .beta, .gamma, .section-title, .product_title, .woocommerce-loop-product__title {
+	font-family: var(--fv-display);
+	color: var(--fv-ink);
+	letter-spacing: -.01em;
+	text-wrap: balance;
+}
+h1, .alpha, .product_title { font-weight: 800; }
+a { color: var(--fv-cobalt); }
+a:hover, a:focus { color: var(--fv-cobalt-dark); }
+:focus-visible { outline: 3px solid var(--fv-rye); outline-offset: 2px; }
+
+/* Botões ----------------------------------------------------------- */
+button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button {
+	background: var(--fv-ink);
+	color: #fff;
+	border-radius: var(--fv-raio);
+	font-weight: 600;
+	transition: background-color .15s ease;
+}
+button:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover {
+	background: #000;
+	color: #fff;
+}
+button.alt, input[type="button"].alt, input[type="submit"].alt, .button.alt, .single_add_to_cart_button,
+.single-product div.product form.cart .button, #place_order, .wc-proceed-to-checkout .checkout-button {
+	background: var(--fv-cobalt);
+	color: #fff;
+}
+button.alt:hover, .button.alt:hover, .single-product div.product form.cart .button:hover, #place_order:hover,
+.wc-proceed-to-checkout .checkout-button:hover {
+	background: var(--fv-cobalt-dark);
+	color: #fff;
+}
+
+/* Campos ----------------------------------------------------------- */
+input[type="text"], input[type="email"], input[type="tel"], input[type="password"], input[type="number"],
+input[type="search"], textarea, .input-text, select, .select2-container .select2-selection--single {
+	background: var(--fv-surface);
+	border: 1.5px solid var(--fv-line);
+	border-radius: 8px;
+	box-shadow: none;
+	color: var(--fv-ink);
+}
+input:focus, textarea:focus, .input-text:focus, select:focus {
+	border-color: var(--fv-cobalt);
+	background: var(--fv-surface);
+	outline: none;
+}
+
+/* Faixa de frete --------------------------------------------------- */
+.fv-faixa {
+	background: var(--fv-ink);
+	color: #EDEEE8;
+	font-size: .875rem;
+	text-align: center;
+	padding: .5em 0;
+}
+.fv-faixa strong { color: #F2C46D; }
+.fv-faixa .amount { color: inherit; }
+
+/* Cabeçalho -------------------------------------------------------- */
+.site-header {
+	background: var(--fv-surface);
+	border-bottom: 1px solid var(--fv-line);
+	color: var(--fv-ink);
+}
+.site-header .site-title a, .site-branding .site-title a { color: var(--fv-ink); font-weight: 800; }
+.site-header .site-description { color: var(--fv-muted); }
+.main-navigation ul li a, .site-title a, ul.menu li a, .site-branding h1 a { color: var(--fv-ink); }
+.main-navigation ul li a:hover, .main-navigation ul li:hover > a { color: var(--fv-cobalt); }
+.site-header-cart .cart-contents, .site-header-cart .widget_shopping_cart a { color: var(--fv-ink); }
+.site-header-cart .cart-contents .count { background: var(--fv-rye-soft); color: var(--fv-ink); border-radius: 99px; padding: 0 .5em; opacity: 1; }
+.storefront-primary-navigation { background: var(--fv-surface); }
+.site-search .widget_product_search input[type="search"] { border-radius: 99px; }
+
+/* Página inicial --------------------------------------------------- */
+.page-template-template-homepage .entry-content, .page-template-template-homepage .entry-header { color: var(--fv-ink); }
+.page-template-template-homepage .type-page.has-post-thumbnail { background-color: var(--fv-ink); }
+.page-template-template-homepage .entry-header h1 {
+	font-size: clamp(2rem, 5vw, 3.4rem);
+	line-height: 1.05;
+	max-width: 18ch;
+}
+.page-template-template-homepage .entry-content p { font-size: 1.125rem; max-width: 55ch; color: var(--fv-muted); }
+
+.fv-beneficios {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1px;
+	background: var(--fv-line);
+	border: 1px solid var(--fv-line);
+	border-radius: var(--fv-raio);
+	overflow: hidden;
+	margin: 0 0 3em;
+}
+.fv-beneficios > div {
+	background: var(--fv-surface);
+	padding: 1.1em 1.25em;
+	display: flex;
+	flex-direction: column;
+	gap: .2em;
+	min-width: 0;
+}
+.fv-beneficios strong { font-family: var(--fv-display); font-size: 1.05rem; }
+.fv-beneficios span { color: var(--fv-muted); font-size: .9rem; }
+
+.wp-block-button .wp-block-button__link:not(.has-background), .wp-element-button:not(.has-background) { background: var(--fv-cobalt); color: #fff; border-radius: var(--fv-raio); font-weight: 600; padding: .8em 1.6em; }
+.wp-block-button .wp-block-button__link:not(.has-background):hover, .wp-element-button:not(.has-background):hover { background: var(--fv-cobalt-dark); color: #fff; }
+.fv-contato-form select, .woocommerce form .form-row select { padding: .7em .8em; border: 1.5px solid var(--fv-line); border-radius: 8px; background-color: var(--fv-surface); }
+
+.storefront-product-section .section-title { font-size: 1.6rem; text-align: left; }
+
+/* Cartões de produto ----------------------------------------------- */
+ul.products li.product {
+	background: var(--fv-surface);
+	border: 1px solid var(--fv-line);
+	border-radius: var(--fv-raio);
+	padding: 0 0 1.2em;
+	text-align: left;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+ul.products li.product img { margin-bottom: 1em; border-radius: 0; }
+ul.products li.product .woocommerce-loop-product__title,
+ul.products li.product .woocommerce-loop-category__title,
+ul.products li.product .price,
+ul.products li.product .fv-parcelas { padding-inline: 1rem; }
+ul.products li.product .woocommerce-loop-product__title { font-size: 1.05rem; font-weight: 600; }
+ul.products li.product .button { margin: auto 1rem 0; align-self: flex-start; }
+ul.products li.product .onsale { position: absolute; top: .75em; left: .75em; }
+ul.products li.product.product-category { padding-bottom: .5em; }
+ul.products li.product-category mark.count { background: transparent; color: var(--fv-muted); }
+
+.price, .price ins, ul.products li.product .price { color: var(--fv-ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.price del { color: var(--fv-muted); font-weight: 400; }
+.price ins { text-decoration: none; }
+.onsale {
+	background: var(--fv-rye);
+	color: #1F2421;
+	border: 0;
+	border-radius: 6px;
+	font-weight: 700;
+	text-transform: none;
+}
+ul.products li.product .price .fv-parcelas { padding-inline: 0; }
+.fv-parcelas {
+	display: block;
+	font-size: .85rem;
+	font-weight: 500;
+	color: var(--fv-ok);
+	margin-top: .15em;
+}
+
+/* Página do produto ------------------------------------------------ */
+.single-product div.product .product_title { font-size: clamp(1.7rem, 4vw, 2.4rem); }
+.single-product div.product p.price { font-size: 1.8rem; margin-bottom: .6em; }
+.single-product div.product .fv-parcelas { font-size: 1rem; }
+.single-product div.product .woocommerce-product-gallery { border-radius: var(--fv-raio); overflow: hidden; }
+.single-product div.product .woocommerce-product-gallery img { background: var(--fv-surface); }
+.fv-garantias {
+	list-style: none;
+	margin: 1.5em 0 1em;
+	padding: 1em 1.2em;
+	background: var(--fv-cobalt-soft);
+	border-radius: var(--fv-raio);
+	display: grid;
+	gap: .45em;
+	font-size: .95rem;
+}
+.fv-garantias li { padding-left: 1.4em; position: relative; }
+.fv-garantias li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: .5em;
+	width: .6em;
+	height: .6em;
+	border-radius: 50%;
+	background: var(--fv-cobalt);
+}
+.fv-duvida a { font-weight: 600; }
+.woocommerce-tabs ul.tabs li a { font-weight: 600; }
+.woocommerce-product-attributes th { font-weight: 600; }
+
+/* Carrinho e checkout ---------------------------------------------- */
+.woocommerce-cart-form, .cart_totals, #order_review, .woocommerce-checkout .col2-set .col-1,
+.woocommerce-checkout .col2-set .col-2, .woocommerce-MyAccount-content {
+	background: var(--fv-surface);
+	border-radius: var(--fv-raio);
+}
+.woocommerce-checkout .col2-set .col-1, .woocommerce-checkout .col2-set .col-2 { padding: 1.25em; }
+#order_review_heading, .woocommerce-billing-fields h3, .woocommerce-shipping-fields h3, .cart_totals h2 { font-size: 1.3rem; }
+table.shop_table { border-radius: var(--fv-raio); }
+table.shop_table td, table.shop_table th { background: transparent; }
+.woocommerce-shipping-methods li { margin-bottom: .4em; }
+#payment { background: var(--fv-bg); border-radius: var(--fv-raio); }
+#payment .payment_methods > li { background: var(--fv-surface); border-radius: 8px; margin-bottom: .5em; }
+#payment .payment_methods li .payment_box { background: var(--fv-cobalt-soft); }
+.woocommerce-info, .woocommerce-noreviews, p.no-comments { background: var(--fv-cobalt); border-radius: 8px; }
+.woocommerce-message { background: var(--fv-ok); border-radius: 8px; }
+.woocommerce-error { border-radius: 8px; }
+
+.fv-falta-frete { background: var(--fv-rye-soft); border-radius: 8px; padding: .6em .9em; font-size: .95rem; }
+tr.fv-falta-frete td { background: var(--fv-rye-soft); font-size: .9rem; }
+.fv-falta-frete .amount { font-weight: 700; }
+
+/* Contato ---------------------------------------------------------- */
+.fv-contato-form { background: var(--fv-surface); border: 1px solid var(--fv-line); border-radius: var(--fv-raio); padding: 1.5em; }
+.fv-contato-form::after { content: ""; display: table; clear: both; }
+.fv-contato-form textarea { width: 100%; }
+.fv-contato-form select { width: 100%; }
+.fv-contato .fv-isca { position: absolute; left: -9999px; }
+.fv-aceite label { font-weight: 400; }
+
+/* Rodapé ----------------------------------------------------------- */
+.site-footer { background: var(--fv-ink); color: #C9CDC6; }
+.site-footer a { color: #fff; }
+.site-footer h1, .site-footer h2, .site-footer h3 { color: #fff; }
+.fv-rodape {
+	display: grid;
+	grid-template-columns: 1.3fr 1fr 1fr 1fr;
+	gap: 2em;
+	padding-block: 1em 2em;
+	font-size: .92rem;
+}
+.fv-rodape > * { min-width: 0; }
+.fv-rodape p { margin-bottom: .6em; }
+.fv-rodape-marca { font-family: var(--fv-display); font-weight: 800; font-size: 1.4rem; color: #fff; }
+.fv-rodape-titulo { font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; }
+.fv-rodape-menu { list-style: none; margin: 0; }
+.fv-rodape-menu li { margin-bottom: .4em; }
+.fv-selos { display: flex; flex-wrap: wrap; gap: .4em; }
+.fv-selos span { border: 1px solid #4A524C; border-radius: 6px; padding: .15em .6em; font-weight: 600; color: #fff; }
+.fv-rodape-miudo { font-size: .8rem; }
+.fv-rodape-legal { border-top: 1px solid #3A413C; padding-top: 1.2em; font-size: .8rem; color: #9BA39B; }
+
+/* WhatsApp --------------------------------------------------------- */
+.fv-whatsapp {
+	position: fixed;
+	right: 16px;
+	bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+	z-index: 999;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: #1FA855;
+	color: #fff;
+	display: grid;
+	place-items: center;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+}
+.fv-whatsapp:hover, .fv-whatsapp:focus { color: #fff; background: #178C46; }
+
+/* Barra fixa do celular (Storefront) ---------------------------- */
+.storefront-handheld-footer-bar { background: var(--fv-ink); border-top: 0; box-shadow: 0 -4px 16px rgba(0, 0, 0, .12); }
+.storefront-handheld-footer-bar ul li > a,
+.storefront-handheld-footer-bar ul li.search .site-search { background: var(--fv-ink); color: #fff; }
+.storefront-handheld-footer-bar ul li > a { border-right-color: #3A413C; }
+.storefront-handheld-footer-bar ul li > a:hover, .storefront-handheld-footer-bar ul li > a:focus { color: #F2C46D; }
+.storefront-handheld-footer-bar ul li.cart .count { background: var(--fv-rye); color: var(--fv-ink); border-color: var(--fv-ink); }
+
+/* Celular ---------------------------------------------------------- */
+@media (max-width: 767px) {
+	/* Duas colunas de produtos no celular: a vitrine fica mais curta e dá para comparar. */
+	.site-main ul.products { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+	.site-main ul.products::before, .site-main ul.products::after { display: none; }
+	.site-main ul.products li.product { width: auto; margin: 0; float: none; }
+	ul.products li.product .woocommerce-loop-product__title { font-size: .92rem; }
+	ul.products li.product .button { font-size: .8rem; padding: .6em .8em; }
+	.fv-beneficios { grid-template-columns: 1fr 1fr; }
+	.fv-rodape { grid-template-columns: 1fr 1fr; }
+	.fv-faixa { font-size: .8rem; }
+	/* O Storefront mostra uma barra fixa no rodapé do celular; o botão sobe para não cobrir. */
+	.fv-whatsapp { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+	ul.products li.product .button { margin-inline: .75rem; }
+	ul.products li.product .woocommerce-loop-product__title, ul.products li.product .price, ul.products li.product .fv-parcelas { padding-inline: .75rem; }
+}
+@media (max-width: 420px) {
+	.fv-beneficios, .fv-rodape { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; }
+}

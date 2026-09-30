@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loja Fermento Vivo · WordPress + WooCommerce</title>
+<meta name="description" content="Estudo de caso: loja virtual em WordPress + WooCommerce com hospedagem própria, checkout brasileiro, Mercado Pago, Melhor Envio e testes automáticos do fluxo de compra.">
+<meta property="og:title" content="Loja Fermento Vivo · WordPress + WooCommerce">
+<meta property="og:description" content="Loja virtual completa em hospedagem própria, com checkout brasileiro, Mercado Pago, Melhor Envio e demo ao vivo.">
+<meta property="og:image" content="https://vitoriamir.github.io/loja-woocommerce/img/inicio-pc.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Estudo de caso em uma coluna: capa com as duas telas, escopo item a item, galeria e detalhes técnicos. */
+:root{
+	--bg:#F7F7F4; --surface:#FFFFFF; --ink:#1F2421; --muted:#5E655F; --line:#DEDFD8;
+	--cobalt:#1F4FC4; --cobalt-soft:#E6ECFB; --rye:#C98A1B; --rye-soft:#FBF1DE; --ok:#227A4B; --ok-soft:#E3F3EA;
+	--display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+	--body:"Figtree","Segoe UI",system-ui,sans-serif;
+	--mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root{
+	--bg:#141715; --surface:#1C201D; --ink:#ECEDE8; --muted:#A2A9A2; --line:#2F3530;
+	--cobalt:#7C9CF2; --cobalt-soft:#1D2742; --rye:#E8AE4A; --rye-soft:#2E2515; --ok:#5CC98C; --ok-soft:#16291E; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);padding-inline:20px}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--cobalt)}
+:focus-visible{outline:3px solid var(--rye);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,6.5vw,4.2rem);font-weight:800}
+h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+.wrap{max-width:1120px;margin-inline:auto}
+.eyebrow{font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--rye)}
+.muted{color:var(--muted)}
+
+/* Topo */
+.topo{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1.25rem;font-size:.95rem}
+.topo strong{font-family:var(--display);font-size:1.1rem}
+.topo nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+.topo nav a{color:var(--ink);text-decoration:none;font-weight:500}
+.topo nav a:hover{color:var(--cobalt)}
+
+/* Capa */
+.capa{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding-block:3rem 4rem}
+.capa > *{min-width:0}
+.capa-texto{display:flex;flex-direction:column;gap:1.25rem}
+.capa-texto p.lead{font-size:1.2rem;color:var(--muted);max-width:40ch}
+.acoes{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.4rem;border-radius:10px;font-weight:700;text-decoration:none;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.07)}
+.btn-primario{background:var(--cobalt);color:#fff}
+.btn-sec{border:1.5px solid var(--line);color:var(--ink);background:var(--surface)}
+.nota{font-size:.85rem;color:var(--muted)}
+.telas{position:relative;padding-bottom:2.5rem}
+.navegador{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 20px 50px rgba(20,24,21,.14)}
+.navegador .barra{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.navegador .barra span{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.celular{position:absolute;right:-12px;bottom:0;width:30%;border-radius:22px;overflow:hidden;border:6px solid var(--ink);box-shadow:0 20px 40px rgba(20,24,21,.25);background:var(--surface)}
+
+/* Números */
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.numeros div{padding:1.4rem 1rem;display:flex;flex-direction:column;gap:.2rem;min-width:0}
+.numeros div + div{border-left:1px solid var(--line)}
+.numeros strong{font:800 2rem/1 var(--display);font-variant-numeric:tabular-nums}
+.numeros span{color:var(--muted);font-size:.92rem}
+
+section.bloco{padding-block:4.5rem 0;display:flex;flex-direction:column;gap:2rem}
+.cabeca{display:flex;flex-direction:column;gap:.75rem;max-width:62ch}
+
+/* Escopo */
+.escopo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 2.5rem}
+.escopo li{display:grid;grid-template-columns:1.6rem 1fr;gap:.75rem;padding:1.1rem 0;border-top:1px solid var(--line);min-width:0}
+.escopo .ok{width:1.35rem;height:1.35rem;border-radius:50%;background:var(--ok-soft);color:var(--ok);display:grid;place-items:center;font-size:.8rem;font-weight:700;margin-top:.1rem}
+.escopo h3{margin-bottom:.25rem}
+.escopo p{color:var(--muted);font-size:.97rem}
+
+/* Galeria */
+.galeria{display:grid;grid-template-columns:repeat(6,1fr);gap:1.25rem}
+.galeria figure{margin:0;display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.galeria figure img{border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.galeria figcaption{font-size:.9rem;color:var(--muted)}
+.galeria figcaption strong{color:var(--ink);font-weight:600}
+.g-pc{grid-column:span 3}
+.g-cel{grid-column:span 2}
+
+/* Detalhes */
+.detalhes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.detalhe{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.detalhe code{font-family:var(--mono);font-size:.85em;background:var(--rye-soft);padding:.1em .35em;border-radius:4px;word-break:break-word}
+.detalhe .tag{align-self:flex-start;font:500 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cobalt);background:var(--cobalt-soft);padding:.25rem .5rem;border-radius:5px}
+
+/* Stack */
+.stack{display:flex;flex-wrap:wrap;gap:.5rem}
+.stack span{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:.35rem .85rem;font-size:.92rem;font-weight:500}
+
+/* Fechamento */
+.fecho{margin-top:5rem;background:var(--ink);color:var(--bg);border-radius:18px;padding:clamp(2rem,5vw,3.5rem);display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:center}
+.fecho > *{min-width:0}
+.fecho h2{color:var(--bg)}
+.fecho p{color:color-mix(in srgb,var(--bg) 75%,transparent);margin-top:.75rem}
+.fecho .acoes{justify-content:flex-end}
+.fecho .btn-sec{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 35%,transparent)}
+footer{padding-block:2.5rem;font-size:.85rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+
+@media (max-width:860px){
+	.capa{grid-template-columns:1fr;padding-block:1.5rem 3rem}
+	.numeros{grid-template-columns:1fr 1fr}
+	.numeros div:nth-child(3){border-left:0}
+	.numeros div:nth-child(n+3){border-top:1px solid var(--line)}
+	.escopo{grid-template-columns:1fr}
+	.detalhes{grid-template-columns:1fr}
+	.galeria{grid-template-columns:1fr 1fr}
+	.g-pc{grid-column:span 2}
+	.g-cel{grid-column:span 1}
+	.fecho{grid-template-columns:1fr}
+	.fecho .acoes{justify-content:flex-start}
+}
+@media (max-width:480px){
+	body{padding-inline:16px}
+	.topo nav{display:none}
+	.celular{width:34%;right:-4px;border-width:4px;border-radius:16px}
+}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="topo">
+	<strong>VitoriaMir</strong>
+	<nav aria-label="Seções">
+		<a href="#escopo">Escopo</a>
+		<a href="#telas">Telas</a>
+		<a href="#tecnico">Técnico</a>
+		<a href="https://github.com/VitoriaMir/loja-woocommerce">Código</a>
+	</nav>
+</header>
+
+<main>
+<section class="capa">
+	<div class="capa-texto">
+		<span class="eyebrow">Estudo de caso · E-commerce</span>
+		<h1>Loja virtual em WordPress + WooCommerce com hospedagem própria</h1>
+		<p class="lead">Uma loja completa, do catálogo ao pedido pago, sem plataforma SaaS: o cliente é dono do servidor, do código e dos dados.</p>
+		<div class="acoes">
+			<a class="btn btn-primario" id="demo" href="https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2FVitoriaMir%2Floja-woocommerce%2Fmain%2Fblueprint-demo.json" target="_blank" rel="noopener">Ver demo ao vivo</a>
+			<a class="btn btn-sec" href="https://github.com/VitoriaMir/loja-woocommerce">Ver o código</a>
+		</div>
+		<p class="nota">A demo roda no seu navegador pelo WordPress Playground e leva cerca de 1 minuto para abrir. Você entra como administrador e pode fazer um pedido de teste. Loja, produtos e empresa são fictícios.</p>
+	</div>
+	<div class="telas">
+		<div class="navegador">
+			<div class="barra" aria-hidden="true"><span></span><span></span><span></span></div>
+			<img src="img/inicio-pc.jpg" width="1440" height="900" alt="Página inicial da loja no computador: faixa de frete grátis, menu de categorias e chamada principal">
+		</div>
+		<div class="celular"><img src="img/loja-cel.jpg" width="1082" height="2202" alt="Vitrine no celular com duas colunas de produtos e preço parcelado"></div>
+	</div>
+</section>
+
+<div class="numeros">
+	<div><strong>22</strong><span>testes automáticos da compra, todos passando</span></div>
+	<div><strong>3</strong><span>jornadas de compra testadas até o pedido</span></div>
+	<div><strong>0</strong><span>plugins pagos ou construtores visuais</span></div>
+	<div><strong>1</strong><span>comando para instalar o servidor inteiro</span></div>
+</div>
+
+<section class="bloco" id="escopo">
+	<div class="cabeca">
+		<span class="eyebrow">Escopo pedido e entregue</span>
+		<h2>Cada item do escopo, e como foi resolvido</h2>
+	</div>
+	<ul class="escopo">
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Instalação e configuração do WordPress</h3><p>Script que prepara um VPS Ubuntu 24.04 do zero: Nginx, PHP 8.3, MariaDB, Redis, HTTPS e o WordPress em português.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Configuração do WooCommerce</h3><p>Real brasileiro (R$ 1.234,56), quilos e centímetros, venda só para o Brasil, estoque, avaliações de quem comprou e endereços em português.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Layout responsivo</h3><p>Tema filho do Storefront com identidade própria. No celular, duas colunas de produtos e barra fixa com conta, busca e carrinho.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Cadastro e organização dos produtos</h3><p>13 produtos com peso e medidas da caixa para o frete, produto com variação de tamanho, promoções, kit e controle de estoque.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Categorias e páginas da loja</h3><p>4 categorias no menu e as páginas institucionais: Sobre, Entregas, Trocas (CDC), Perguntas frequentes, Privacidade (LGPD) e Termos.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Carrinho e checkout</h3><p>CPF ou CNPJ validados, endereço preenchido pelo CEP, número e bairro, e aviso de quanto falta para o frete grátis.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Meio de pagamento</h3><p>Mercado Pago com Pix, cartão parcelado e boleto, e "ou 6x sem juros" abaixo de cada preço.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Entrega e frete</h3><p>Melhor Envio (Correios e transportadoras pelo CEP), frete grátis acima de R$ 299, retirada na loja e taxa maior para itens pesados.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Página de contato</h3><p>Formulário próprio com proteção contra robôs e limite por IP. As mensagens ficam salvas no painel mesmo se o e-mail falhar.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Segurança e desempenho</h3><p>Firewall, fail2ban, limite de login, usuários ocultos e cabeçalhos de segurança. Para velocidade: cache de página no Nginx, OPcache e Redis.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>SEO básico</h3><p>Descrição de cada página, prévia de link no WhatsApp e redes sociais, dados de produto e da loja para o Google, sitemap e robots.txt.</p></div></li>
+		<li><span class="ok" aria-hidden="true">✓</span><div><h3>Testes completos do fluxo de compra</h3><p>Playwright no computador e no celular: vitrine, carrinho, checkout, três pedidos concluídos, contato, SEO e segurança.</p></div></li>
+	</ul>
+</section>
+
+<section class="bloco" id="telas">
+	<div class="cabeca">
+		<span class="eyebrow">Telas</span>
+		<h2>Do produto ao pedido recebido</h2>
+		<p class="muted">Capturas tiradas pelos testes automáticos, com a loja rodando e um pedido feito de verdade.</p>
+	</div>
+	<div class="galeria">
+		<figure class="g-pc"><img src="img/produto-pc.jpg" width="1440" height="900" loading="lazy" alt="Página do produto: panela de ferro em promoção, com parcelamento e garantias"><figcaption><strong>Produto.</strong> Preço promocional, parcelamento, simulação de frete e dúvida pelo WhatsApp.</figcaption></figure>
+		<figure class="g-pc"><img src="img/carrinho-pc.jpg" width="1440" height="900" loading="lazy" alt="Carrinho com dois produtos e o total"><figcaption><strong>Carrinho.</strong> Cálculo do frete pelo CEP antes de ir para o pagamento.</figcaption></figure>
+		<figure class="g-pc"><img src="img/checkout-pc.jpg" width="1440" height="900" loading="lazy" alt="Checkout com CPF, celular, CEP e endereço preenchido automaticamente"><figcaption><strong>Checkout.</strong> Digitou o CEP, a rua, o bairro e a cidade aparecem sozinhos. Acima de R$ 299, frete grátis.</figcaption></figure>
+		<figure class="g-pc"><img src="img/pedido-pc.jpg" width="1440" height="900" loading="lazy" alt="Página de pedido recebido com número, data, total e forma de pagamento"><figcaption><strong>Pedido recebido.</strong> Número, total e instruções de pagamento.</figcaption></figure>
+		<figure class="g-cel"><img src="img/inicio-cel.jpg" width="1082" height="2202" loading="lazy" alt="Página inicial no celular"><figcaption><strong>Início no celular.</strong></figcaption></figure>
+		<figure class="g-cel"><img src="img/produto-cel.jpg" width="1082" height="2202" loading="lazy" alt="Produto com variação de tamanho no celular"><figcaption><strong>Produto com tamanhos.</strong></figcaption></figure>
+		<figure class="g-cel"><img src="img/checkout-cel.jpg" width="1082" height="2202" loading="lazy" alt="Checkout de pessoa jurídica com CNPJ alfanumérico no celular"><figcaption><strong>Compra de empresa</strong> com CNPJ alfanumérico.</figcaption></figure>
+	</div>
+</section>
+
+<section class="bloco" id="tecnico">
+	<div class="cabeca">
+		<span class="eyebrow">Detalhes técnicos</span>
+		<h2>O que não aparece na tela, mas faz a loja funcionar</h2>
+	</div>
+	<div class="detalhes">
+		<article class="detalhe">
+			<span class="tag">Checkout</span>
+			<h3>CNPJ alfanumérico de 2026</h3>
+			<p class="muted">Desde julho de 2026 a Receita emite CNPJ com letras. A validação segue o novo cálculo e aceita o exemplo oficial <code>12.ABC.345/01DE-35</code>.</p>
+		</article>
+		<article class="detalhe">
+			<span class="tag">Frete</span>
+			<h3>Proteção contra falha do plugin</h3>
+			<p class="muted">Os testes mostraram que o Melhor Envio, sem conta conectada, quebra o checkout depois de criar o pedido. A loja desliga esse passo até a conta ser conectada e avisa no painel.</p>
+		</article>
+		<article class="detalhe">
+			<span class="tag">Integração</span>
+			<h3>Etiquetas sem digitação</h3>
+			<p class="muted">Os campos usam os nomes que o Melhor Envio e o Mercado Pago leem (<code>_billing_cpf</code>, <code>_shipping_number</code>…). A etiqueta sai com CPF, número e bairro.</p>
+		</article>
+		<article class="detalhe">
+			<span class="tag">Arquitetura</span>
+			<h3>Regras separadas do visual</h3>
+			<p class="muted">O tema cuida só da aparência. Checkout, contato, SEO e segurança ficam num plugin obrigatório, que continua funcionando se o tema for trocado.</p>
+		</article>
+		<article class="detalhe">
+			<span class="tag">Servidor</span>
+			<h3>Instalação reproduzível</h3>
+			<p class="muted">Um comando instala e configura o VPS inteiro, e pode rodar de novo sem estragar nada. Inclui backup diário do banco e das imagens.</p>
+		</article>
+		<article class="detalhe">
+			<span class="tag">Qualidade</span>
+			<h3>Testes que acharam problemas reais</h3>
+			<p class="muted">Além da falha do Melhor Envio, os testes pegaram o celular fora de ordem no checkout e o contato voltando para a página errada. Tudo corrigido antes da entrega.</p>
+		</article>
+	</div>
+	<div class="stack" aria-label="Tecnologias">
+		<span>WordPress 7</span><span>WooCommerce 11</span><span>PHP 8.3</span><span>Storefront</span><span>Mercado Pago</span><span>Melhor Envio</span><span>ViaCEP</span><span>Nginx</span><span>MariaDB</span><span>Redis</span><span>Let's Encrypt</span><span>Playwright</span><span>WordPress Playground</span>
+	</div>
+</section>
+
+<section class="fecho">
+	<div>
+		<h2>Quer uma loja assim para o seu negócio?</h2>
+		<p>Loja em hospedagem própria, adaptada ao seu catálogo, com pagamento, frete e testes antes de publicar.</p>
+	</div>
+	<div class="acoes">
+		<a class="btn btn-primario" href="https://github.com/VitoriaMir">Falar comigo no GitHub</a>
+		<a class="btn btn-sec" href="https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2FVitoriaMir%2Floja-woocommerce%2Fmain%2Fblueprint-demo.json" target="_blank" rel="noopener">Abrir a demo</a>
+	</div>
+</section>
+</main>
+
+<footer>
+	<span>Projeto de portfólio de VitoriaMir · 2026</span>
+	<span>Fermento Vivo é uma loja fictícia criada para demonstração.</span>
+</footer>
+</div>
+</body>
+</html>
