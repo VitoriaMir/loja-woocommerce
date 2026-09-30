@@ -45,7 +45,8 @@ const blueprint = {
 	login: true,
 	steps: [
 		{ step: 'installPlugin', pluginData: { resource: 'wordpress.org/plugins', slug: 'woocommerce' }, options: { activate: true } },
-		{ step: 'installPlugin', pluginData: { resource: 'wordpress.org/plugins', slug: 'woocommerce-mercadopago' }, options: { activate: true } },
+		// O plugin do Mercado Pago dá erro fatal no Playground do navegador (no ambiente local funciona).
+		// Na demo o pagamento é o "Pix manual", já que o Mercado Pago precisaria de credenciais reais.
 		{ step: 'installPlugin', pluginData: { resource: 'wordpress.org/plugins', slug: 'melhor-envio-cotacao' }, options: { activate: true } },
 		{ step: 'installTheme', themeData: { resource: 'wordpress.org/themes', slug: 'storefront' }, options: { activate: false } },
 		...[...diretorios].sort().map((d) => ({ step: 'mkdir', path: d })),

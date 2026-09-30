@@ -29,16 +29,6 @@
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "wordpress.org/plugins",
-				"slug": "woocommerce-mercadopago"
-			},
-			"options": {
-				"activate": true
-			}
-		},
-		{
-			"step": "installPlugin",
-			"pluginData": {
-				"resource": "wordpress.org/plugins",
 				"slug": "melhor-envio-cotacao"
 			},
 			"options": {
